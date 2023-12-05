@@ -1,11 +1,11 @@
 import { ReactNode } from "react";
 import "./App.css";
-import { useQuery, gql, DocumentNode, TypedDocumentNode, OperationVariables, QueryDataOptions, QueryHookOptions } from "@apollo/client";
+import { useQuery, gql, DocumentNode } from "@apollo/client";
 
 const AnimeList: DocumentNode = gql`
   query Query {
     Page {
-      media {
+      media{
         siteUrl
         title {
           english
