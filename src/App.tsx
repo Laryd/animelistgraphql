@@ -1,40 +1,37 @@
 import { ReactNode } from "react";
 import "./App.css";
-import {useQuery, gql } from "@apollo/client";
+import { useQuery, gql, DocumentNode, TypedDocumentNode, OperationVariables, QueryDataOptions, QueryHookOptions } from "@apollo/client";
 
-
-const AnimeList = gql`
- query Query {
-  Page {
-    media {
-      siteUrl
-      title {
-        english
-        native
+const AnimeList: DocumentNode = gql`
+  query Query {
+    Page {
+      media {
+        siteUrl
+        title {
+          english
+          native
+        }
+        description
+        coverImage {
+          medium
+        }
+        bannerImage
+        volumes
+        episodes
       }
-      description
-      coverImage {
-        medium
-      }
-      bannerImage
-      volumes
-      episodes
     }
   }
-}
-
 `;
 type Anime = {
   coverImage: {
-     medium: string
-  },
+    medium: string;
+  };
   title: {
-    english: string
-  },
-  episodes: ReactNode,
-  description: string
-
-}
+    english: string;
+  };
+  episodes: ReactNode;
+  description: string;
+};
 function App() {
   const { loading, error, data } = useQuery(AnimeList);
   return loading ? (
@@ -52,7 +49,7 @@ function App() {
             <div>
               <h1>{anime.title.english} </h1>
               <div className="episodes">
-                Episodes <b>{anime.episodes} </b>
+                <b>Episodes</b> <b className="bolded">{anime.episodes} </b>
               </div>
               <div
                 dangerouslySetInnerHTML={{ __html: anime.description }}
