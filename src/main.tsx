@@ -1,9 +1,14 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.tsx'
-import './index.css'
-import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
-const client = new ApolloClient({
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App.tsx";
+import "./index.css";
+import {
+  ApolloClient,
+  ApolloProvider,
+  InMemoryCache,
+  NormalizedCacheObject,
+} from "@apollo/client";
+const client: ApolloClient<NormalizedCacheObject> = new ApolloClient({
   uri: "https://graphql.anilist.co",
   cache: new InMemoryCache(),
 });
